@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import create_db_and_tables
-from app.routers import health, versions
+from app.routers import builds, health, versions
 
 app = FastAPI(
     title="Elden Ring Build Forge API",
@@ -26,6 +26,7 @@ def on_startup() -> None:
 
 app.include_router(health.router, prefix="/api")
 app.include_router(versions.router, prefix="/api")
+app.include_router(builds.router, prefix="/api")
 
 
 @app.get("/")
